@@ -15,6 +15,9 @@ app.set('view engine', 'jade');
 //where to find the view files
 app.set('views', './views');
 
+//Mark the public dir as a static dir
+app.use(express.static('./public'));
+
 //A route for the home page
 
 app.get('/', function (req,res) {
@@ -34,9 +37,3 @@ app.get('/test', function(req,res) {
 http.createServer(app).listen(3000, function() {
 	console.log('Express app started');
 })
-
-
-
-
-
-
