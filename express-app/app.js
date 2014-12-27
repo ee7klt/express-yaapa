@@ -8,6 +8,11 @@ var express = require('express');
 //Create an instance of Express
 var app = express();
 
+//logger
+app.use(express.logger({
+	format: ':remote-addr :method :url'
+}));
+
 
 //Load the iniparser module
 var iniparser = require('iniparser');
