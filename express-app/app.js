@@ -9,6 +9,11 @@ var express = require('express');
 var app = express();
 
 
+//Load the iniparser module
+var iniparser = require('iniparser');
+//Read the ini file and populate the content on the config object
+var config = iniparser.parseSync('./config.ini');
+
 
 //set the view engine
 app.set('view engine', 'jade');
@@ -30,16 +35,11 @@ app.use(app.router);
 app.use(express.errorHandler());
 
 
-//call undefined function to generate error
-app.get('/',function(req,res) {
-  fail();
-});
-
 
 //A route for the home page
 
 app.get('/', function (req,res) {
-	res.render('index');
+  res.render('index', {title:config.title,message:config.message});
 });
 
 
@@ -52,6 +52,6 @@ app.get('/test', function(req,res) {
 })
 
 //Start the app
-http.createServer(app).listen(3000, function() {
-	console.log('Express app started');
+http.createServer(app).listen(config.port, function() {
+	console.log('Express app started on port '+config.port);
 })
