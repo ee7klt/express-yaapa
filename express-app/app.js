@@ -18,6 +18,10 @@ app.set('views', './views');
 //Mark the public dir as a static dir
 app.use(express.static('./public'));
 
+
+//Add the responseTime middleware
+app.use(express.responseTime());
+
 //A route for the home page
 
 app.get('/', function (req,res) {
