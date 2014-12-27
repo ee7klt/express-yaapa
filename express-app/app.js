@@ -22,6 +22,20 @@ app.use(express.static('./public'));
 //Add the responseTime middleware
 app.use(express.responseTime());
 
+
+//explicitly add router middleware
+app.use(app.router);
+
+//Add the errorHandler middleware
+app.use(express.errorHandler());
+
+
+//call undefined function to generate error
+app.get('/',function(req,res) {
+  fail();
+});
+
+
 //A route for the home page
 
 app.get('/', function (req,res) {
