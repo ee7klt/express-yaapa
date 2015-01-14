@@ -41,11 +41,28 @@ app.use(express.errorHandler());
 
 
 
+
+//Setup for production
+if ('production' == app.get('env')) {
+	app.get('/',function(req,res) {
+		res.render('index',{title:config.title,message:config.message});
+	})
+}
+
+
+//setup for development
+if ('development' == app.get('env')) {
+	app.use(express.errorHandler());
+	app.get('/', function(req,res) {
+		res.send('development mode test');
+	})
+}
+
 //A route for the home page
 
-app.get('/', function (req,res) {
-  res.render('index', {title:config.title,message:config.message});
-});
+// app.get('/', function (req,res) {
+//   res.render('index', {title:config.title,message:config.message});
+// });
 
 
 app.get('/say-hello', function(req,res) {
