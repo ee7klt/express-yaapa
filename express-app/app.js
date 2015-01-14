@@ -58,6 +58,11 @@ if ('development' == app.get('env')) {
 	})
 }
 
+
+//common env setup
+app.get('/test', function(req,res) {
+	res.send('works on all environment');
+})
 //A route for the home page
 
 // app.get('/', function (req,res) {
@@ -69,9 +74,9 @@ app.get('/say-hello', function(req,res) {
 	res.render('hello');
 });
 
-app.get('/test', function(req,res) {
-	res.send('this is a test');
-})
+// app.get('/test', function(req,res) {
+// 	res.send('this is a test');
+// })
 
 //Start the app
 http.createServer(app).listen(config.port, function() {
