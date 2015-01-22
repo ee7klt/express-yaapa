@@ -1,5 +1,6 @@
 exports.index = function(req,res) {
-	res.send('index of users');
+	//res.set('Content-Type', 'text/plain');
+	res.send('<h1>welcome</h1>');
 };
 
 exports.new = function(req,res) {
