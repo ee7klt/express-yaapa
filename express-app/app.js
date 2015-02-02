@@ -22,8 +22,23 @@ app.set('view engine', 'jade');
 //HTML should be prettified
 app.locals.pretty = true;
 
-app.get('/', function(req,res) {
-	res.render('index', {title:'Express'});
+// app.get('/', function(req,res) {
+// 	res.render('index', {title:'Express'});
+// });
+
+app.get('/', function(req, res) {
+	res.jsonp({message: 'welcome'});
+});
+
+app.get('/hello', function(req, res) {
+	res.jsonp({message: 'hello'});
+});
+
+app.get('/file', function(req,res) {
+	res.sendfile('./test.png', function(err) {
+		if (err) {console.log(err);}
+		else {console.log('file sent');}
+	});
 });
 
 
