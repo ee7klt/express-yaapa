@@ -41,6 +41,12 @@ app.get('/file', function(req,res) {
 	});
 });
 
+app.get('/download', function(req,res) {
+	res.download('./test.png', function(err) {
+		if (err) {console.log(err);}
+		else {console.log('file downloaded');}
+	});
+});
 
 
 http.createServer(app).listen(3000, function () {
