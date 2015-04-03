@@ -11,13 +11,26 @@ var app = express();
 // Add router middleware explicitly
 app.use(app.router);
 
-//404 error handler. handles request that all other middleware before it has failed to handle
+
+//500 error handler (server error)
+app.use(function(error, req, res, next) {
+	res.status(500);
+	res.render('500.jade',
+	{
+		title:'500',
+		error: '42'
+	}
+	);
+});
+
+//404 error handler (user error). 
+//handles request that all other middleware before it has failed to handle
 app.use(function(req,res) {
 	res.status(400);
 	res.render('404.jade',
 	{
 		title: '404',
-		message: 'File not Found'
+		message: 'Bazinga!'
 	}
 	);
 });
@@ -58,6 +71,10 @@ app.get('/download', function(req,res) {
 		else {console.log('file downloaded');}
 	});
 });
+
+app.get('/error', function(req, res) {
+	error();
+})
 
 
 http.createServer(app).listen(3000, function () {
