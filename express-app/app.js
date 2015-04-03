@@ -11,6 +11,17 @@ var app = express();
 // Add router middleware explicitly
 app.use(app.router);
 
+//404 error handler. handles request that all other middleware before it has failed to handle
+app.use(function(req,res) {
+	res.status(400);
+	res.render('404.jade',
+	{
+		title: '404',
+		message: 'File not Found'
+	}
+	);
+});
+
 
 //load resourceful route handler
 //app.resource('users', require('./users.js'));
